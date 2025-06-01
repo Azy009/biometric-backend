@@ -3,7 +3,7 @@ const path = require('path');
 
 exports.registerUser = async (req, res) => {
   try {
-    const { name, email, contact, bankName } = req.body;
+    const { name, email, contact, bankName,fingerprintkey } = req.body;
     
     if (!req.files || !req.files.aadhar || !req.files.pan || !req.files.fingerprint) {
       return res.status(400).json({ error: 'All documents (Aadhar, PAN, and Fingerprint) are required' });
@@ -11,6 +11,7 @@ exports.registerUser = async (req, res) => {
 
     const user = new User({
       name,
+      fingerprintkey,
       email,
       contact,
       bankName,
